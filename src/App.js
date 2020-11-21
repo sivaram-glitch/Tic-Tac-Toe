@@ -26,7 +26,47 @@ const App =() => {
   };
 
   const checkIsWinner = ()=>{
-    //
+    if(itemArray[0]===itemArray[1]&&
+      itemArray[0]===itemArray[2]&&
+      itemArray[0]!=="empty"){
+        setWinMessage(`${itemArray[0]} won`);
+      }
+    else if(itemArray[3]===itemArray[4]&&
+        itemArray[3]===itemArray[5]&&
+        itemArray[3]!=="empty"){
+          setWinMessage(`${itemArray[3]} won`);
+        }
+    else if(itemArray[6]===itemArray[7]&&
+      itemArray[6]===itemArray[8]&&
+      itemArray[6]!=="empty"){
+        setWinMessage(`${itemArray[6]} won`);
+      }
+    else if(itemArray[0]===itemArray[3]&&
+      itemArray[0]===itemArray[6]&&
+      itemArray[0]!=="empty"){
+        setWinMessage(`${itemArray[0]} won`);
+      }
+    else if(itemArray[1]===itemArray[4]&&
+      itemArray[1]===itemArray[7]&&
+      itemArray[1]!=="empty"){
+        setWinMessage(`${itemArray[1]} won`);
+      }
+    else if(itemArray[2]===itemArray[5]&&
+      itemArray[2]===itemArray[8]&&
+      itemArray[2]!=="empty"){
+        setWinMessage(`${itemArray[2]} won`);
+      }
+    else if(itemArray[0]===itemArray[4]&&
+        itemArray[0]===itemArray[8]&&
+        itemArray[0]!=="empty"){
+          setWinMessage(`${itemArray[0]} won`);
+        }
+    else if(itemArray[2]===itemArray[4]&&
+      itemArray[2]===itemArray[6]&&
+      itemArray[2]!=="empty"){
+        setWinMessage(`${itemArray[2]} won`);
+      }
+    
   };
 
   const checkIsDrawn = ()=>{
@@ -35,7 +75,7 @@ const App =() => {
 
   const changeItem = itemNumber =>{
     if(winMessage){
-      return toast(winMessage,{type:"success"});
+      return toast(winMessage,{type:"error"});
     }
     if(itemArray[itemNumber]==="empty"){
       itemArray[itemNumber]=isCross ? "cross":"circle";
@@ -45,6 +85,8 @@ const App =() => {
     else{
       return toast("Already filled",{type:"error"});
     }
+
+    checkIsWinner();
 
   
   };
@@ -61,7 +103,7 @@ const App =() => {
                   {winMessage}
 
                 </h1>
-                <Button color="success" block onClick ={reloadGame}>
+                <Button color="warning" block onClick ={reloadGame}>
                   Reload
                 </Button>
               </div>
