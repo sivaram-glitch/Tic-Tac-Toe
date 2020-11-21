@@ -70,7 +70,15 @@ const App =() => {
   };
 
   const checkIsDrawn = ()=>{
-    //
+    let count =0;
+    for(let i in itemArray){
+      if(itemArray[i]!=="empty"){
+        count++
+      }
+    }
+    if(count===itemArray.length){
+      setWinMessage("Game Drawn");
+    }
   };
 
   const changeItem = itemNumber =>{
@@ -87,6 +95,7 @@ const App =() => {
     }
 
     checkIsWinner();
+    checkIsDrawn();
 
   
   };
