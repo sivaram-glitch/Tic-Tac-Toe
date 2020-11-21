@@ -20,7 +20,9 @@ const App =() => {
   const [winMessage,setWinMessage] = useState("");
 
   const reloadGame = () =>{
-  //
+     setIsCross(false);
+     setWinMessage("");
+     itemArray.fill("empty",0,9);
   };
 
   const checkIsWinner = ()=>{
@@ -32,7 +34,19 @@ const App =() => {
   };
 
   const changeItem = itemNumber =>{
-    //
+    if(winMessage){
+      return toast(winMessage,{type:"success"});
+    }
+    if(itemArray[itemNumber]==="empty"){
+      itemArray[itemNumber]=isCross ? "cross":"circle";
+      setIsCross(!isCross);
+
+    }
+    else{
+      return toast("Already filled",{type:"error"});
+    }
+
+  
   };
 
 
@@ -58,7 +72,7 @@ const App =() => {
             )}
             <div className="grid">
               {itemArray.map((item,index)=>(
-                <Card color='warning' onclick = {()=>changeItem(index)}>
+                <Card color='success' onClick = {()=>changeItem(index)}>
                   <CardBody className="box">
                     <Icon name={item} />
                   </CardBody>
